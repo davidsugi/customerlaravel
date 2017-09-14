@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 use App\customer;
-use App\Http\Requests\CreateCustomerRequest;
+use App\Http\Requests\CustomerRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
-    public function _construct($value='')
+    public function __construct()
     {
-        $this->middleware('auth',['only' => 'create']);
+        $this->middleware('auth',['only' => 'create','edit']);
     }
 
-
-    public function store(CreateCustomerRequest $request)
+    public function store(CustomerRequest $request)
     {
         if(!isset($request['status'])){
             $request['status']=1;
-        }  
+        } 
+        // dd($request->all());
         customer::create($request->all());  
         return redirect('customers');
     }
@@ -24,16 +25,17 @@ class CustomerController extends Controller
     public function index()
     {
     	// $res = customer::withTrashed()->get();
+        $usr=Auth::user();
         $res = customer::all();
-    	return view('index')->with('res',$res);
+    	return view('Customer.indexCustomer')->with(['res'=>$res, 'usr'=>$usr ]);
     }
 
     public function create()
     {
-        return view('from');
+        return view('Customer.formCustomer');
     }
 
-    public function update($id,CreateCustomerRequest $request)
+    public function update($id,CustomerRequest $request)
     {
 
         if(!isset($request['status'])){
@@ -41,13 +43,13 @@ class CustomerController extends Controller
         }
         $res= customer::findOrFail($id);
         $res->update($request->all());
-        return redirect('customers');
+        return redirect()->action('CustomerController@show', ['id' => $id]);
     }
 
     public function show($id)
     {
     	$res= customer::findOrFail($id);
-    	return view('show',compact('res'));
+    	return view('Customer.showCustomer',compact('res'));
     }
 
     public function destroy($id)
@@ -60,7 +62,7 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $res= customer::findOrFail($id);
-        return view('from')->with('cust',$res);
+        return view('Customer.formCustomer')->with('cust',$res);
     }
     
 }

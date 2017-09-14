@@ -1,25 +1,38 @@
 @extends('app')
 
+@section('ext')
+	<style type="text/css">
+		.container{
+			font-size:22px;
+		}
+		input{
+			font-family: "arial";
+		}
+
+	</style>
+@endsection
+
+
 @section('title')
 		@if (isset($cust))
-			Update customer
+			Update Domain
 		@else
-			Tambah customer
+			Tambah Domain
 		@endif
 @endsection
 
 @section('content')
 		@if (isset($cust))
-			<h1>Ubah customer: {{$cust->name}}</h1>
-			<form action="{{ url('/customers', $cust->id ) }}" method="POST"><input name="_method" type="hidden" value="PUT">
+			<h1>Ubah Domain: {{$cust->name}}</h1>
+			<form action="{{ url('/Domains', $cust->id ) }}" method="POST"><input name="_method" type="hidden" value="PUT">
 		@else
-		<h1>Tambah customer baru</h1>
-			<form action="{{ url('/customers') }}" method="POST">
+		<h1>Tambah Domain baru</h1>
+			<form action="{{ url('/Domains') }}" method="POST">
 		@endif
 		 {{ csrf_field() }}
 		<fieldset class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
 			<label for="name">Nama</label>
-			<input type="text" class="form-control" name="name" id="name" placeholder="Masukan nama customer" @if(isset($cust))
+			<input type="text" class="form-control" name="name" id="name" placeholder="Masukan nama Domain" @if(isset($cust))
 				value="{{ $cust->name }}"
 			@elseif(isset($errors))
 				 value="{{ old('name') }}"
@@ -58,7 +71,37 @@
             </span>
         @endif
 	</fieldset>	
+		<fieldset class="form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
+			<label for="name">Nomor Telpon/Handphone</label>
+			<input type="text" class="form-control" name="phone" id="phone" placeholder="Masukan nomor anda"
+			@if(isset($cust))
+				value="{{ $cust->phone }}"
+			@elseif(isset($errors))
+				 value="{{ old('phone') }}"
+			@endif>
+			@if ($errors->has('phone'))
+	            <span class="help-block">
+	                <strong>{{ $errors->first('phone') }}</strong>
+	            </span>
+	        @endif
+		</fieldset>
 
+		<fieldset class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+			<label for="name">Email</label>
+			<input type="email" class="form-control" name="email" id="email" placeholder="masukan email anda" 
+			@if(isset($cust))
+				value="{{ $cust->email }}"
+			@elseif(isset($errors))
+				 value="{{ old('email') }}"
+			@endif>
+			@if ($errors->has('email'))
+	            <span class="help-block">
+	                <strong>{{ $errors->first('email') }}</strong>
+	            </span>
+	        @endif
+		</fieldset>
+	
+	
 {{-- 
 	<div class="radio">
 		<label>

@@ -20,6 +20,7 @@ class CreateRenewalHistoriesTable extends Migration
             $table->integer('biaya');
             $table->integer('domain_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('domain_id')
                    ->references('id')

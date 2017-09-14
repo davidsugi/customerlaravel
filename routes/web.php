@@ -28,6 +28,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::post('/customers/{id}','CustomerController@delete');
 
 Route::resource('customers', 'CustomerController');
+Route::resource('domains', 'DomainController');
+Route::resource('registrars', 'RegistrarController');
+Route::resource('renewal_histories', 'RenewalHistoryController');
 
 
 

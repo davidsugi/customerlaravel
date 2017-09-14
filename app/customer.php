@@ -9,13 +9,17 @@ class customer extends Model
 {
 	use SoftDeletes;
 
-   	protected $fillable= [
+   	protected $fillable = [
    		'name',
    		'Addres',
    		'dob',
    		'status',
-
+   		'phone',
+   		'email',
    	];
+
+   	// protected $guarded = [];
+
    	protected $dates= ['dob','deleted_at'];
    	//accesor
    	public function getDateOfBirthAttribute()
@@ -23,7 +27,7 @@ class customer extends Model
    		return $this->dob->format('d-m-Y');
    	}
 
-   	public function getStatus()
+   	public function getStatusLabelAttribute()
    	{
    		$code="Aktif";
    		if ($this->status==1) {
@@ -31,6 +35,11 @@ class customer extends Model
    		}
 
    		return $code;
+   	}
+
+   	public function domains()
+   	{
+   		return $this->hasMany('App\Domain');
    	}
 
 }

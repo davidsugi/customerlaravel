@@ -23,6 +23,7 @@ class CreateDomainsTable extends Migration
             $table->integer('cust_id')->unsigned();
             $table->integer('reg_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('cust_id')
                    ->references('id')
