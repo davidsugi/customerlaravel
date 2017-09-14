@@ -13,7 +13,7 @@ class RegistrarRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,6 +27,14 @@ class RegistrarRequest extends FormRequest
             'registrar'=> 'required',
             'username'=>'required',
             'password'=>'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'registrar.required' => 'tolong isi nama registrar!',
+            'username.required' => 'tolong isi username untuk registrar bersangkutan!',
+            'password.required' => 'tolong isi password untuk registrar bersangkutan!',
         ];
     }
 }

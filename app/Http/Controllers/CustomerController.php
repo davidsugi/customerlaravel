@@ -18,7 +18,8 @@ class CustomerController extends Controller
             $request['status']=1;
         } 
         // dd($request->all());
-        customer::create($request->all());  
+        customer::create($request->all());
+        session()->flash('imp','data customer'.$request['name']."berhasil ditambahkan!"); 
         return redirect('customers');
     }
 
@@ -27,12 +28,13 @@ class CustomerController extends Controller
     	// $res = customer::withTrashed()->get();
         $usr=Auth::user();
         $res = customer::all();
-    	return view('Customer.indexCustomer')->with(['res'=>$res, 'usr'=>$usr ]);
+        // session()->flash('msg','Welcome '.$usr->name);
+    	return view('Customer.index')->with('res',$res);
     }
 
     public function create()
     {
-        return view('Customer.formCustomer');
+        return view('Customer.form');
     }
 
     public function update($id,CustomerRequest $request)
@@ -43,26 +45,29 @@ class CustomerController extends Controller
         }
         $res= customer::findOrFail($id);
         $res->update($request->all());
+        session()->flash('imp','data dengan id'.$id."berhasil di update!");
         return redirect()->action('CustomerController@show', ['id' => $id]);
     }
 
     public function show($id)
     {
     	$res= customer::findOrFail($id);
-    	return view('Customer.showCustomer',compact('res'));
+        session()->flash('msg','anda sedang mengakses customer dengan id: '.$id);
+    	return view('Customer.show',compact('res'));
     }
 
     public function destroy($id)
     {
         $res= customer::findOrFail($id);
         $res->delete();
+        session()->flash('imp','data customer dengan id: '.$id."berhasil dihapus!"); 
         return redirect('customers');
     }
 
     public function edit($id)
     {
         $res= customer::findOrFail($id);
-        return view('Customer.formCustomer')->with('cust',$res);
+        return view('Customer.form')->with('cust',$res);
     }
     
 }

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class CustomerRequest extends FormRequest
 {
     /**
@@ -28,7 +29,8 @@ class CustomerRequest extends FormRequest
             'Addres'=>'required',
             'dob'=>'required|date',
             'phone'=>'required|numeric',
-            'email'=>'required|email|unique:customers,email,'.$this->get('id'),
+            // 'email'=>'required|email|unique_custom:customers,email,id,'.$this->get('id'),
+            'email'=>'required|email|unique:customers,email',
         ];
     }
 

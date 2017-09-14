@@ -16,9 +16,7 @@
 @endsection
 
 @section('content')
-<div class="alert alert-info" role="alert">
-	Welcome {{ $usr->name }}
-</div>
+
 
 	<a class="btn btn-primary" href="{{ action('CustomerController@create') }}" role="button"> Tambah customer baru </a>
 <table class="table">
@@ -46,7 +44,7 @@
 			<td>{{ $row->phone }}</td>
 			<td>{{ $row->Addres }}</td>
 			<td>{{ $row->dateOfBirth }}</td>
-			<td>{{ $row->status }}</td>
+			<td>{{ $row->statusLabel }}</td>
 			<td><a class="btn btn-primary" href="{{ action('CustomerController@show', [$row->id]) }}" role="button">detail</a></td>
 		</tr>
 		@endforeach

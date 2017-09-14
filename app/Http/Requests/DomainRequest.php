@@ -13,7 +13,7 @@ class DomainRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,8 +27,8 @@ class DomainRequest extends FormRequest
             'name'=> 'required',
             'start'=>'required|date',
             'end'=>'required|date',
-            'fee'=>'required|integer',
-            'renewal_fee'=>'required|integer',
+            'fee'=>'required|numeric',
+            'renewal_fee'=>'required|numeric',
         ];
     }
 

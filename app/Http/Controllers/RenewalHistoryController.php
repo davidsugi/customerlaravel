@@ -25,12 +25,12 @@ class RenewalHistoryController extends Controller
     {
     	// $res = RenewalHistory::withTrashed()->get();
         $res = RenewalHistory::all();
-    	return view('index')->with('res',$res);
+    	return view('RenewalHistory.index')->with('res',$res);
     }
 
     public function create()
     {
-        return view('from');
+        return view('RenewalHistory.form');
     }
 
     public function update($id,RenewalHistoryRequest $request)
@@ -47,7 +47,7 @@ class RenewalHistoryController extends Controller
     public function show($id)
     {
     	$res= RenewalHistory::findOrFail($id);
-    	return view('show',compact('res'));
+    	return view('RenewalHistory.show',compact('res'));
     }
 
     public function destroy($id)
@@ -60,7 +60,7 @@ class RenewalHistoryController extends Controller
     public function edit($id)
     {
         $res= RenewalHistory::findOrFail($id);
-        return view('from')->with('cust',$res);
+        return view('RenewalHistory.form')->with('cust',$res);
     }
     
 }

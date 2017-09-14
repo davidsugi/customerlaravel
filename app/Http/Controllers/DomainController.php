@@ -13,54 +13,59 @@ class DomainController extends Controller
 
 
     public function store(DomainRequest $request)
-    {
-        if(!isset($request['status'])){
-            $request['status']=1;
-        }  
-        Domain::create($request->all());  
-        return redirect('customers');
+    { 
+        Domain::create($request->all());
+        session()->flash('msg','data domain'.$request['name']."berhasil ditambahkan!"); 
+        return redirect('domains');
     }
 
     public function index()
     {
     	// $res = Domain::withTrashed()->get();
         $res = Domain::all();
-    	return view('index')->with('res',$res);
+    	return view('Domain.index')->with('res',$res);
     }
 
     public function create()
     {
-        return view('from');
+        $res= "App\customer"::all();
+        $reg= "App\Registrar"::all();
+        return view('Domain.form')->with([
+            'customers'=>$res,
+            'reg'=>$reg,
+            ]);
     }
 
     public function update($id,DomainRequest $request)
     {
-
-        if(!isset($request['status'])){
-            $request['status']=1;
-        }
         $res= Domain::findOrFail($id);
         $res->update($request->all());
-        return redirect('customers');
+        session()->flash('imp','data dengan id'.$id."berhasil di update!");
+        return redirect()->action('DomainController@show', ['id' => $id]);
     }
 
     public function show($id)
     {
     	$res= Domain::findOrFail($id);
-    	return view('show',compact('res'));
+    	return view('Domain.show',compact('res'));
     }
 
     public function destroy($id)
     {
         $res= Domain::findOrFail($id);
         $res->delete();
-        return redirect('customers');
+        session()->flash('imp','data domain dengan id: '.$id."berhasil dihapus!"); 
+        return redirect('domains');
     }
 
     public function edit($id)
     {
         $res= Domain::findOrFail($id);
-        return view('from')->with('cust',$res);
+        $cus= "App\customer"::all();
+        $reg= "App\Registrar"::all();
+        return view('Domain.form')->with([
+            'dom'=>$res, 'customers'=>$cus, 'reg'=>$reg
+            ]);
     }
     
 }

@@ -13,6 +13,7 @@ class RenewalHistory extends Model
    		'tanggal_perpanjang',
    		'end',
    		'biaya',
+      'domain_id',
    	];
 
    	protected $dates= ['end','tanggal_perpanjang','deleted_at'];

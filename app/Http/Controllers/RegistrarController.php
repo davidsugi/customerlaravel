@@ -14,53 +14,49 @@ class RegistrarController extends Controller
 
     public function store(RegistrarRequest $request)
     {
-        if(!isset($request['status'])){
-            $request['status']=1;
-        }  
-        Registrar::create($request->all());  
-        return redirect('customers');
+        Registrar::create($request->all()); 
+        session()->flash('msg','data registrar'.$request['name']."berhasil ditambahkan!"); 
+        return redirect('registrars');
     }
 
     public function index()
     {
     	// $res = Registrar::withTrashed()->get();
         $res = Registrar::all();
-    	return view('index')->with('res',$res);
+    	return view('Registrar.index')->with('res',$res);
     }
 
     public function create()
     {
-        return view('from');
+        return view('Registrar.form');
     }
 
     public function update($id,RegistrarRequest $request)
     {
-
-        if(!isset($request['status'])){
-            $request['status']=1;
-        }
         $res= Registrar::findOrFail($id);
         $res->update($request->all());
-        return redirect('customers');
+        session()->flash('imp','data dengan id'.$id."berhasil di update!");
+        return redirect('registrars');
     }
 
     public function show($id)
     {
     	$res= Registrar::findOrFail($id);
-    	return view('show',compact('res'));
+    	return view('Registrar.show',compact('res'));
     }
 
     public function destroy($id)
     {
         $res= Registrar::findOrFail($id);
         $res->delete();
-        return redirect('customers');
+        session()->flash('imp','data registrar dengan id: '.$id."berhasil dihapus!"); 
+        return redirect('registrars');
     }
 
     public function edit($id)
     {
         $res= Registrar::findOrFail($id);
-        return view('from')->with('cust',$res);
+        return view('Registrar.form')->with('reg',$res);
     }
     
 }

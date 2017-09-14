@@ -14,8 +14,9 @@ class Domain extends Model
         'end',
         'fee',
         'renewal_fee',
+        'cust_id',
+        'reg_id',
     ];
-
 	
 	protected $dates= ['start','end','deleted_at'];
 
@@ -33,4 +34,27 @@ class Domain extends Model
     {
     	return $this->hasMany('App\RenewalHistory');
     }
+
+    public function getstartLabelAttribute()
+    {
+        return $this->start->format('d-m-Y');
+    }
+
+    public function getendLabelAttribute()
+    {
+        return $this->end->format('d-m-Y');
+    }
+
+    public function getcustomerLabelAttribute()
+    {
+        $cus='App\customer'::findOrFail($this->cust_id);
+        return $cus->name;
+    }
+
+    public function getregistrarLabelAttribute()
+    {
+        $reg='App\Registrar'::findOrFail($this->reg_id);
+        return $reg->registrar;
+    }
+
 }

@@ -12,12 +12,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 {{-- 
 <link href="https://fonts.google.com/css.family=Fjalla+One:100,600" rel="stylesheet" type="text/css"> --}}
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Teko:300,400,600,700&amp;lang=en" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&amp;lang=en" />
 <style type="text/css">
 	        html, body {
-                font-family: 'Teko';
+                font-family: 'Josefin sans';
                 font-weight: 20;
-                height: 100vh;
                 margin: 0;
             }
 </style>
@@ -71,9 +70,25 @@
 
 
 	<div class="container">
+		@if (Session::has('msg'))
+		<div class="alert alert-success {{ Session::has('imp') ? 'alert-important' : '' }}" role="alert">
+		@if (Session::has('imp'))
+			<button class="close" type="button" data-dismiss="alert" aria-hidden="true" >&times;</button>
+			<strong> {{ session('imp')}} </strong>
+		@else
+			{{ session('msg')}}
+		@endif
+			
+		</div>
+	@endif
+
 		@yield('content')
 	</div>
 
 @yield('script')
+
+<script type="text/javascript">
+	$('div.alert').not('.alert-important').delay(3000).slideUp(300)
+</script>
 </body>
 </html>

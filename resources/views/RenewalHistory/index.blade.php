@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('title')
-		view customer
+		view History
 @endsection
 
 @section('ext')
@@ -20,11 +20,11 @@
 	Welcome {{ $usr->name }}
 </div>
 
-	<a class="btn btn-primary" href="{{ action('CustomerController@create') }}" role="button"> Tambah customer baru </a>
+	<a class="btn btn-primary" href="{{ action('CustomerController@create') }}" role="button"> Tambah History baru </a>
 <table class="table">
 		<thead>
 				<tr>
-				<th>Nomor customer</th>
+				<th>Nomor History</th>
 				<th>Nama</th>
 				<th>Email</th>
 				<th>No HP</th>
