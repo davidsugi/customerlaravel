@@ -28,7 +28,7 @@
 				<th>Harga Perpanjangan</th>
 				<th>Customer</th>
 				<th>Registrar</th>
-				<th>Action</th>
+				<th colspan="2">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -46,6 +46,9 @@
 			<td>{{ $row->customerLabel }}</td>
 			<td>{{ $row->registrarLabel }}</td>
 			<td><a class="btn btn-primary" href="{{ action('DomainController@show', [$row->id]) }}" role="button">detail</a></td>
+			<td><form method="POST" action="{{ url('renewal_histories/create', [$row->id]) }}"> {{ csrf_field() }}
+				<button class="btn btn-success" type="submit">Perpanjang</a>
+			</form></td>
 		</tr>
 		@endforeach
 	</tbody>

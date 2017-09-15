@@ -49,7 +49,7 @@
 	<p> Tanggal berakhir Domain: {{ $res->endLabel }} </p>
 	<p> Biaya beli Domain: {{ $res->fee }} </p>
 	<p> Biaya perpanjang Domain: {{ $res->renewal_fee }} </p>
-	<p> pemilik Domain: {{ $res->customerLabel }} </p>
+	<p> pemilik Domain: {{ $res->customer->name }} </p>
 	<p> registrar Domain: {{ $res->registrarLabel }} </p>
 </div>
 

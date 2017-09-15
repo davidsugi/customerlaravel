@@ -16,22 +16,15 @@
 @endsection
 
 @section('content')
-<div class="alert alert-info" role="alert">
-	Welcome {{ $usr->name }}
-</div>
-
-	<a class="btn btn-primary" href="{{ action('CustomerController@create') }}" role="button"> Tambah History baru </a>
+	<a class="btn btn-primary" href="{{ action('RenewalHistoryController@create') }}" role="button"> Tambah History baru </a>
 <table class="table">
 		<thead>
 				<tr>
-				<th>Nomor History</th>
-				<th>Nama</th>
-				<th>Email</th>
-				<th>No HP</th>
-				<th>Alamat</th>
-				<th>Tanggal Lahir</th>
-				<th>status</th>
-				<th>Action</th>
+					<th>Nomor History</th>
+					<th>Nama Domain</th>
+					<th>biaya perpanjang</th>
+					<th>tanggal mulai</th>
+					<th>tanggal berakhir</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -41,13 +34,11 @@
 				<td>{{ $column }}</td>
 			@endforeach --}}
 			<td>{{ $row->id }}</td>
-			<td>{{ $row->name }}</td>
-			<td>{{ $row->email }}</td>
-			<td>{{ $row->phone }}</td>
-			<td>{{ $row->Addres }}</td>
-			<td>{{ $row->dateOfBirth }}</td>
-			<td>{{ $row->status }}</td>
-			<td><a class="btn btn-primary" href="{{ action('CustomerController@show', [$row->id]) }}" role="button">detail</a></td>
+			<td>{{ $row->domainLabel }}</td>
+			<td>{{ $row->biaya }}</td>
+			<td>{{ $row->startLabel }}</td>
+			<td>{{ $row->endLabel }}</td>
+			<td><a class="btn btn-primary" href="{{ action('RenewalHistoryController@show', [$row->id]) }}" role="button">detail</a></td>
 		</tr>
 		@endforeach
 	</tbody>

@@ -14,11 +14,8 @@ class RenewalHistoryController extends Controller
 
     public function store(RenewalHistoryRequest $request)
     {
-        if(!isset($request['status'])){
-            $request['status']=1;
-        }  
         RenewalHistory::create($request->all());  
-        return redirect('customers');
+        return redirect('renewal_histories');
     }
 
     public function index()
@@ -28,20 +25,26 @@ class RenewalHistoryController extends Controller
     	return view('RenewalHistory.index')->with('res',$res);
     }
 
-    public function create()
+    public function create($id='')
     {
-        return view('RenewalHistory.form');
+        $res=['id'=>$id];
+        if($id!=''){
+            $tmp="App\Domain"::findOrFail($id);
+            $res['biaya']=$tmp->renewal_fee;
+            $res['domainLabel']=$tmp->name;
+            $res['dom_id']=$id;
+        }
+        // dd($res);
+        $res= (object) $res;
+        $dom="App\Domain"::all();
+        return view('RenewalHistory.form')->with(['dom'=>$dom, 'hist'=>$res]);
     }
 
     public function update($id,RenewalHistoryRequest $request)
     {
-
-        if(!isset($request['status'])){
-            $request['status']=1;
-        }
         $res= RenewalHistory::findOrFail($id);
         $res->update($request->all());
-        return redirect('customers');
+        return redirect('renewal_histories');
     }
 
     public function show($id)
@@ -54,13 +57,16 @@ class RenewalHistoryController extends Controller
     {
         $res= RenewalHistory::findOrFail($id);
         $res->delete();
-        return redirect('customers');
+        return redirect('renewal_histories');
     }
 
     public function edit($id)
     {
         $res= RenewalHistory::findOrFail($id);
-        return view('RenewalHistory.form')->with('cust',$res);
+        $dom="App\Domain"::all();
+        dd($res);
+        return view('RenewalHistory.form')->with(['hist'=>$res, 'dom'=>$dom]
+            );
     }
     
 }

@@ -27,10 +27,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::put('/customers/{id}','CustomerController@update');
 // Route::post('/customers/{id}','CustomerController@delete');
 
+Route::post('renewal_histories/create/{id}', 'RenewalHistoryController@create');
+Route::get('renewal_histories/create/{id}', 'RenewalHistoryController@create');
 Route::resource('customers', 'CustomerController');
 Route::resource('domains', 'DomainController');
 Route::resource('registrars', 'RegistrarController');
 Route::resource('renewal_histories', 'RenewalHistoryController');
+
 
 
 

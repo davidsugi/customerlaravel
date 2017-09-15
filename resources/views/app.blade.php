@@ -36,7 +36,7 @@
 					<a class="nav-link" href="/registrars">Registrar</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/histories">Renewal History</a>
+					<a class="nav-link" href="/renewal_histories">Renewal History</a>
 				</li>
 			</ul>
                     <ul class="nav navbar-nav navbar-right">

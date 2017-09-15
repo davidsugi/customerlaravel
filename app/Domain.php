@@ -20,12 +20,12 @@ class Domain extends Model
 	
 	protected $dates= ['start','end','deleted_at'];
 
-    public function customers()
+    public function customer()
     {
-    	return $this->belongsTo('App\customer');
+    	return $this->belongsTo('App\customer','cust_id');
     }
 
-    public function registrars()
+    public function registrar()
     {
     	return $this->belongsTo('App\Registrar');
     }

@@ -47,9 +47,9 @@
 
 	<fieldset class="form-group {{ $errors->has('start') ? ' has-error' : '' }}">
 		<label for="start">Tanggal beli</label>
-		<input type="date" class="form-control" id="start" name="start" placeholder="Tangggal beli domain" @if(isset($dom))
+		<input type="date" class="form-control" id="start" onchange="changedate(this.value)" name="start" placeholder="Tangggal beli domain"  @if(isset($dom))
 			value="{{ $dom->start->format('Y-m-d') }}"
-			@elseif(isset($errors))
+			@elseif(null!==old('start'))
 				 value="{{ old('start') }}"
 			@else
 				value="{{ date('Y-m-d') }}"
@@ -193,7 +193,7 @@ $(document).ready(function() {
     $('.js-registrar-basic-single').select2();
 
 });
-
+@include('enddate')
 </script>
 @endsection
 

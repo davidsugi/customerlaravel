@@ -20,6 +20,22 @@ class RenewalHistory extends Model
 
     public function domains()
     {
-    	return $this->belongsTo('App\Domain');
+    	return $this->belongsTo('App\Domain','domain_id');
+    }
+
+    public function getdomainLabelAttribute()
+    {
+        $dom='App\Domain'::findOrFail($this->dom_id);
+        return $dom->name;
+    }
+
+    public function getstartLabelAttribute()
+    {
+        return $this->tanggal_perpanjang->format('d-m-Y');
+    }
+
+    public function getendLabelAttribute()
+    {
+        return $this->end->format('d-m-Y');
     }
 }
