@@ -20,15 +20,18 @@
 		.front{
 			background-color:lightsteelblue;
 			margin-left: 150px;
-			margin-top:-450px;
+			margin-top:-100px;
 
 		}
 		.back{
+			z-index;-1;
 			background-color:grey;
 			margin-left: 160px;
 			margin-top:100px;
-			height:441px;
-			width:690px;
+			color:grey;
+		}
+		.back>p{
+			display:none;
 		}
 		.modal-body>p{
 			font-size:40px;
@@ -39,6 +42,14 @@
 		}
 
 	</style>
+@endsection
+
+@section('bread')
+	<li><a href="{{ route ('home') }}"><i class="fa fa-dashboard"></i> </a></li><li><a href="{{ route ('customers.index') }}"> Customer</a></li> <li class="active"> {{ $res->name }} </li>
+@endsection
+
+@section('Header')
+	Detail Customer: {{ $res->name }} <small>melihat data customer</small>
 @endsection
 
 @section('title')
@@ -54,10 +65,15 @@
 	 <div class="col-sm-1"><button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button></div>
 </div>
 <div class="blo back">
+	<p> Nomor customer: {{ $res->id }} </p>
+	<p> Nama customer: {{ $res->name }} </p>
+	<p> Email customer: {{ $res->email }} </p>
+	<p> Nomor Handphone customer: {{ $res->phone }} </p>
+	<p> Alamat customer: {{ $res->Addres }} </p>
+	<p> Tanggal lahir customer: {{ $res->dateOfBirth }} </p>
 </div>
 
 <div class="blo front">
-	<h1>Detail Customer: {{ $res->name }} </h1>
 	<p> Nomor customer: {{ $res->id }} </p>
 	<p> Nama customer: {{ $res->name }} </p>
 	<p> Email customer: {{ $res->email }} </p>

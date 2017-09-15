@@ -12,8 +12,24 @@
 	</style>
 @endsection
 
+@section('bread')
+	<li><a href="{{ route ('home') }}"><i class="fa fa-dashboard"></i> </a></li><li><a href="{{ route ('customers.index') }}">Customer</a></li><li class="active">		
+		@if (isset($cust))
+			Update customer:{{ $cust->name }}
+		@else
+			Tambah customer
+		@endif</li>
+@endsection
 
 @section('title')
+		@if (isset($cust))
+			Update customer
+		@else
+			Tambah customer
+		@endif
+@endsection
+
+@section('Header')
 		@if (isset($cust))
 			Update customer
 		@else

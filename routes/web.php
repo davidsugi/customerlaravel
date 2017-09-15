@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::put('/customers/{id}','CustomerController@update');
 // Route::post('/customers/{id}','CustomerController@delete');
 
-Route::post('renewal_histories/create/{id}', 'RenewalHistoryController@create');
+Route::post('renewal_histories/create/{id}', 'RenewalHistoryController@create')->name('renewal_history.creates');
 Route::get('renewal_histories/create/{id}', 'RenewalHistoryController@create');
 Route::resource('customers', 'CustomerController');
 Route::resource('domains', 'DomainController');

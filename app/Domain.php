@@ -27,7 +27,7 @@ class Domain extends Model
 
     public function registrar()
     {
-    	return $this->belongsTo('App\Registrar');
+    	return $this->belongsTo('App\Registrar','reg_id');
     }
 
     public function renewalHistory()
