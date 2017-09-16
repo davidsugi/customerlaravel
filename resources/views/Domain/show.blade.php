@@ -25,6 +25,11 @@
 		.modal-body>p>span{
 			color:red;
 		}
+		@media screen and (min-width: 710px) {
+		    .buttoned {
+		        margin-left:30px;
+		    }
+		}
 
 	</style>
 @endsection
@@ -33,15 +38,25 @@
 	Domain {{$res->name}}
 @endsection
 
+@section('Header')
+	Detail Domain <small>Data Domain dari {{$res->name}}</small> 
+@endsection
+
 @section('content')
 <div class="row command">
-	<div class="col-sm-2"> </div>
-	<div class="col-sm-2"><p>Perintah:</p></div>
-	 <div class="col-sm-1"><a class="btn btn-primary" href="{{ action('DomainController@edit', $res->id) }}" role="button">edit</a>
-		</div>
-	 <div class="col-sm-1"><button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button></div>
+	<div class="col-xs-2">
 </div>
-<div class="blo">
+Perintah:
+	<a class="btn btn-primary buttoned" href="{{ action('DomainController@edit', $res->id) }}" role="button">edit</a>
+		<button class="btn btn-danger buttoned" data-toggle="modal" data-target="#delete">Delete</button></div>
+
+<br>
+<br>
+<div class="col-xs-3">
+ </div>
+                        <div class="col-xs-6">
+                            <div class="box box-info">
+                            <div class="box-body table-responsive">
 	<h1>Detail Domain: {{ $res->name }} </h1>
 	<p> Nomor Domain: {{ $res->id }} </p>
 	<p> Domain: {{ $res->name }} </p>
@@ -49,8 +64,45 @@
 	<p> Tanggal berakhir Domain: {{ $res->endLabel }} </p>
 	<p> Biaya beli Domain: {{ $res->fee }} </p>
 	<p> Biaya perpanjang Domain: {{ $res->renewal_fee }} </p>
-	<p> pemilik Domain: {{ $res->customer->name }} </p>
-	<p> registrar Domain: {{ $res->registrarLabel }} </p>
+	<p> pemilik Domain: <a href="#" data-toggle="popover" title="Data customer(no hp, email)" data-content="{{ $res->customer->phone }}, {{ $res->customer->email}} ">{{ $res->customer->name }} </a> </p>
+	<p> registrar Domain: <a href="#" data-toggle="popover" title="Data registrar(usernmae, password)" data-content="{{ $res->registrar->username }}, {{ $res->registrar->password}} ">{{ $res->registrar->registrar }} </a>  </p>
+	</div>
+</div>
+</div>
+
+ <div class="col-xs-12">
+                            <div class="box box-solid box-primary">
+                            <div class="box-header">
+                            	<h3 class="box-title">Histori perpanjangan domain {{ $res->name }}</h3>
+                            </div>
+                            <div class="box-body table-responsive">
+		<table id="example1" class="table table-bordered table-striped">
+		<thead>
+				<tr>
+					<th>Nomor History</th>
+					<th>biaya perpanjang</th>
+					<th>tanggal mulai</th>
+					<th>tanggal berakhir</th>
+
+				</tr>
+			</thead>
+			<tbody>
+		@foreach ($hist as $row)
+		<tr>
+{{-- 			@foreach ($row->toArray() as $column)
+				<td>{{ $column }}</td>
+			@endforeach --}}
+			<td>{{ $row->id }}</td>
+			<td>{{ $row->biaya }}</td>
+			<td>{{ $row->startLabel }}</td>
+			<td>{{ $row->endLabel }}</td>
+			</td>
+		</tr>
+		@endforeach
+	</tbody>
+</table>
+	</div>
+</div>
 </div>
 
 		<div class="modal fade" id="delete">
@@ -79,6 +131,12 @@
 		</div><!-- /.modal -->
 @endsection
 
-@section('script')
-	
-@endsection
+@push('script')
+	<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});
+</script>
+
+@include('datatablescr')
+@endpush

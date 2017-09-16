@@ -38,33 +38,64 @@
 			color:red;
 		}
 
+		@media screen and (min-width: 710px) {
+		    .buttoned {
+		        margin-left:30px;
+		    }
+		}
+
 	</style>
 @endsection
 
+@section('Header')
+		Detail Registrar<small>Melihat data detail dari registrar {{$res->registrar}} </small>
+@endsection
+
 @section('title')
-	Registrar {{$res->name}}
+	Registrar {{$res->registrar}}
 @endsection
 
 @section('content')
-<div class="row command">
+
+ <div class="row">
+ <div class="row command">
 	<div class="col-sm-2"> </div>
 	<div class="col-sm-2"><p>Perintah:</p></div>
 	 <div class="col-sm-1"><a class="btn btn-primary" href="{{ action('RegistrarController@edit', $res->id) }}" role="button">edit</a>
 		</div>
 	 <div class="col-sm-1"><button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button></div>
 </div>
-<div class="blo back">
+<br>
+ <div class="col-xs-3">
+ </div>
+                        <div class="col-xs-6">
+                            <div class="box box-success">
+
+                                <div class="box-body table-responsive">
+	<h1>Detail Registrar: {{ $res->registrar }} </h1>
+	<p> Nomor registrar: {{ $res->id }} </p>
+	<p> Nama registrar: {{ $res->registrar }} </p>
+	<p> username untuk registrar: {{ $res->username }} </p>
+	<p> password untuk registrar: {{ $res->password }} </p>
+</div>
+</div>
+</div>
 </div>
 
-<div class="blo front">
-	<h1>Detail Registrar: {{ $res->name }} </h1>
-	<p> Nomor customer: {{ $res->id }} </p>
-	<p> Nama customer: {{ $res->name }} </p>
-	<p> Email customer: {{ $res->email }} </p>
-	<p> Nomor Handphone customer: {{ $res->phone }} </p>
-	<p> Alamat customer: {{ $res->Addres }} </p>
-	<p> Tanggal lahir customer: {{ $res->dateOfBirth }} </p>
+{{-- Table data domain --}}
+ <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box box-solid box-info">
+                            <div class="box-header">
+                            	<h3 class="box-title"> Domain yang terdaftar di registrar {{ $res->registrar }}</h3>
+                            </div>
+                                <div class="box-body table-responsive">
+@include('../Domain/dom')
 </div>
+</div>
+</div>
+</div>
+
 
 		<div class="modal fade" id="delete">
 			<div class="modal-dialog" role="document">
@@ -92,6 +123,6 @@
 		</div><!-- /.modal -->
 @endsection
 
-@section('script')
-	
-@endsection
+@push('script')
+@include("datatablescr")
+@endpush

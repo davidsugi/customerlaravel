@@ -53,7 +53,8 @@ class CustomerController extends Controller
     {
     	$res= customer::findOrFail($id);
         session()->flash('msg','anda sedang mengakses customer dengan id: '.$id);
-    	return view('Customer.show',compact('res'));
+        $dom= $res->domains()->get();
+    	return view('Customer.show',compact('res','dom'));
     }
 
     public function destroy($id)

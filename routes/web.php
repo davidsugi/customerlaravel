@@ -34,6 +34,7 @@ Route::resource('domains', 'DomainController');
 Route::resource('registrars', 'RegistrarController');
 Route::resource('renewal_histories', 'RenewalHistoryController');
 
+Route::get('/haha', 'HomeController@new')->name('haha');
 
 
 

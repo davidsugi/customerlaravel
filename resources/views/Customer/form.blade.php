@@ -31,9 +31,9 @@
 
 @section('Header')
 		@if (isset($cust))
-			Update customer
+			Update customer<small>Ubah data customer: {{ $cust->name }} </small>
 		@else
-			Tambah customer
+			Tambah customer<small>Tambah customer baru</small>
 		@endif
 @endsection
 

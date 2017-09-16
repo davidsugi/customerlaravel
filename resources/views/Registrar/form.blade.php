@@ -21,6 +21,14 @@
 		@endif
 @endsection
 
+@section('Header')
+		@if (isset($reg))
+			Update registrar<small>Mengubah data detail registrar {{ $reg->registrar}} </small>
+		@else
+			Tambah registrar<small>Menambah data registrar baru</small>
+		@endif
+@endsection
+
 @section('content')
 		@if (isset($reg))
 			<h1>Ubah registrar: {{$reg->registrar}}</h1>

@@ -42,7 +42,8 @@ class RegistrarController extends Controller
     public function show($id)
     {
     	$res= Registrar::findOrFail($id);
-    	return view('Registrar.show',compact('res'));
+        $dom= $res->domains()->get();
+    	return view('Registrar.show',compact('res','dom'));
     }
 
     public function destroy($id)

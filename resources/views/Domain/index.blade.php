@@ -15,6 +15,10 @@
 	</style>
 @endsection
 
+@section('Header')
+		View Domain<small>Melihat data domain </small>
+@endsection
+
 @section('content')
  <div class="row">
                         <div class="col-xs-12">
@@ -51,8 +55,8 @@
 			<td>{{ $row->endLabel }}</td>
 			<td>{{ $row->fee }}</td>
 			<td>{{ $row->renewal_fee }}</td>
-			<td>{{ $row->customerLabel }}</td>
-			<td>{{ $row->registrarLabel }}</td>
+			<td>{{ $row->customer->name }}</td>
+			<td>{{ $row->registrar->registrar }}</td>
 			<td><a class="btn btn-primary" href="{{ action('DomainController@show', [$row->id]) }}" role="button">detail</a></td>
 			<td><form method="POST" action="{{ url('renewal_histories/create', [$row->id]) }}"> {{ csrf_field() }}
 				<button class="btn btn-success" type="submit">Perpanjang</a>

@@ -14,7 +14,11 @@ class RenewalHistoryController extends Controller
 
     public function store(RenewalHistoryRequest $request)
     {
-        RenewalHistory::create($request->all());  
+        RenewalHistory::create($request->all()); 
+        // $upd= "App\Domain"::findOrFail($request['dom_id']);
+        // // $upd['start']=$request->tanggal_perpanjang;
+        // // $upd['end']=$request->end;
+        // // $upd->save();
         return redirect('renewal_histories');
     }
 

@@ -47,7 +47,8 @@ class DomainController extends Controller
     public function show($id)
     {
     	$res= Domain::findOrFail($id);
-    	return view('Domain.show',compact('res'));
+        $hist= $res->renewalHistory()->get();
+    	return view('Domain.show',compact('res','hist'));
     }
 
     public function destroy($id)

@@ -15,6 +15,10 @@
 	</style>
 @endsection
 
+@section('Header')
+		View History <small>Melihat seluruh data riwayat perpanjangan data</small>
+@endsection
+
 @section('content')
  <div class="row">
                         <div class="col-xs-12">
@@ -42,7 +46,7 @@
 				<td>{{ $column }}</td>
 			@endforeach --}}
 			<td>{{ $row->id }}</td>
-			<td>{{ $row->domainLabel }}</td>
+			<td>{{ $row->domain->name }}</td>
 			<td>{{ $row->biaya }}</td>
 			<td>{{ $row->startLabel }}</td>
 			<td>{{ $row->endLabel }}</td>

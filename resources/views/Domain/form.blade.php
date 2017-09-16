@@ -22,6 +22,14 @@
 		@endif
 @endsection
 
+@section('Header')
+		@if (isset($dom))
+			Update Domain <small>Ubah data domain {{$dom->name}}</small>
+		@else
+			Tambah Domain<small>Tambah data domain baru</small>
+		@endif
+@endsection
+
 @section('content')
 		@if (isset($dom))
 			<h1>Ubah Domain: {{$dom->name}}</h1>
@@ -65,8 +73,10 @@
 		<label for="end">Tanggal berakhir</label>
 		<input type="date" class="form-control" id="end" name="end" placeholder="Masukan Tanggal berakhir domain" @if(isset($dom))
 				value="{{ $dom->end->format('Y-m-d') }}"
-			@elseif(isset($errors))
+			@elseif(null!==old('end'))
 				 value="{{ old('end') }}"
+			@else
+				value="{{ Carbon\carbon::now()->addYear()->format('Y-m-d') }}"
 			@endif>
 				@if ($errors->has('end'))
             <span class="help-block">

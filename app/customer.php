@@ -39,7 +39,7 @@ class customer extends Model
 
    	public function domains()
    	{
-   		return $this->hasMany('App\Domain');
+   		return $this->hasMany('App\Domain',"cust_id");
    	}
 
 }

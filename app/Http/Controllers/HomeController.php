@@ -25,4 +25,10 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function new()
+    {
+        $res= "App\RenewalHistory"::all();
+        return view('new')->with('res',$res);
+    }
 }

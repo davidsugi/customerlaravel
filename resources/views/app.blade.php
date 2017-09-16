@@ -55,7 +55,7 @@
         <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
         <!-- AdminLTE App -->
         <script src="../../js/AdminLTE/app.js" type="text/javascript"></script>
-@yield('script')
+@stack('script')
 
 <script type="text/javascript">
 	$('div.alert').not('.alert-important').delay(3000).slideUp(300)

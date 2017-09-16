@@ -4,6 +4,11 @@
 		view registrar
 @endsection
 
+@section('Header')
+		view registrar<small>Melihat data seluruh registrar</small>
+@endsection
+
+
 @section('ext')
 	<style type="text/css">
 		table{

@@ -32,7 +32,7 @@ class Domain extends Model
 
     public function renewalHistory()
     {
-    	return $this->hasMany('App\RenewalHistory');
+    	return $this->hasMany('App\RenewalHistory','domain_id');
     }
 
     public function getstartLabelAttribute()
@@ -45,16 +45,16 @@ class Domain extends Model
         return $this->end->format('d-m-Y');
     }
 
-    public function getcustomerLabelAttribute()
-    {
-        $cus='App\customer'::findOrFail($this->cust_id);
-        return $cus->name;
-    }
+    // public function getcustomerLabelAttribute()
+    // {
+    //     $cus='App\customer'::findOrFail($this->cust_id);
+    //     return $cus->name;
+    // }
 
-    public function getregistrarLabelAttribute()
-    {
-        $reg='App\Registrar'::findOrFail($this->reg_id);
-        return $reg->registrar;
-    }
+    // public function getregistrarLabelAttribute()
+    // {
+    //     $reg='App\Registrar'::findOrFail($this->reg_id);
+    //     return $reg->registrar;
+    // }
 
 }

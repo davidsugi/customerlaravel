@@ -20,7 +20,7 @@
 		.front{
 			background-color:lightsteelblue;
 			margin-left: 150px;
-			margin-top:-100px;
+			margin-top:100px;
 
 		}
 		.back{
@@ -41,6 +41,11 @@
 			color:red;
 		}
 
+		@media screen and (min-width: 710px) {
+		    .buttoned {
+		        margin-left:30px;
+		    }
+		}
 	</style>
 @endsection
 
@@ -49,7 +54,7 @@
 @endsection
 
 @section('Header')
-	Detail Customer: {{ $res->name }} <small>melihat data customer</small>
+	Detail Customer <small>melihat data customer {{ $res->name }}</small>
 @endsection
 
 @section('title')
@@ -59,18 +64,8 @@
 @section('content')
 <div class="row command">
 	<div class="col-sm-2"> </div>
-	<div class="col-sm-2"><p>Perintah:</p></div>
-	 <div class="col-sm-1"><a class="btn btn-primary" href="{{ action('CustomerController@edit', $res->id) }}" role="button">edit</a>
-		</div>
-	 <div class="col-sm-1"><button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button></div>
-</div>
-<div class="blo back">
-	<p> Nomor customer: {{ $res->id }} </p>
-	<p> Nama customer: {{ $res->name }} </p>
-	<p> Email customer: {{ $res->email }} </p>
-	<p> Nomor Handphone customer: {{ $res->phone }} </p>
-	<p> Alamat customer: {{ $res->Addres }} </p>
-	<p> Tanggal lahir customer: {{ $res->dateOfBirth }} </p>
+	Perintah:<a class="btn btn-primary buttoned" href="{{ action('CustomerController@edit', $res->id) }}" role="button">edit</a>
+	<button class="btn btn-danger buttoned" data-toggle="modal" data-target="#delete">Delete</button>
 </div>
 
 <div class="blo front">
@@ -81,6 +76,26 @@
 	<p> Alamat customer: {{ $res->Addres }} </p>
 	<p> Tanggal lahir customer: {{ $res->dateOfBirth }} </p>
 </div>
+<br>
+<br>
+<br>
+
+@if(null!==$dom->toArray())
+	
+ <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box box-solid box-info">
+                            <div class="box-header table-responsive">
+                            <H2 class="box-title">List domain milik customer {{ $res->name }} </H2>
+                            </div>
+                                <div class="box-body table-responsive">
+@include('../Domain/dom')
+</div>
+</div>
+</div>
+</div>
+@endif
+
 
 		<div class="modal fade" id="delete">
 			<div class="modal-dialog" role="document">
@@ -108,6 +123,4 @@
 		</div><!-- /.modal -->
 @endsection
 
-@section('script')
-	
-@endsection
+@include("datatablescr")

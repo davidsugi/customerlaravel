@@ -18,16 +18,16 @@ class RenewalHistory extends Model
 
    	protected $dates= ['end','tanggal_perpanjang','deleted_at'];
 
-    public function domains()
+    public function domain()
     {
     	return $this->belongsTo('App\Domain','domain_id');
     }
 
-    public function getdomainLabelAttribute()
-    {
-        $dom='App\Domain'::findOrFail($this->dom_id);
-        return $dom->name;
-    }
+    // public function getdomainLabelAttribute()
+    // {
+    //     $dom='App\Domain'::findOrFail($this->dom_id);
+    //     return $dom->name;
+    // }
 
     public function getstartLabelAttribute()
     {

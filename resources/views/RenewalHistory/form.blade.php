@@ -21,6 +21,14 @@
 		@endif
 @endsection
 
+@section('Header')
+		@if (isset($hist->end)))
+			Update Sejarah perpanjangan Domain <small>Mengubah data sejarah perpanjangan domain</small>
+		@else
+			Tambah Sejarah perpanjangan Domain <small>Menambah data sejarah perpanjangan domain</small>
+		@endif
+@endsection
+
 @section('content')
 		@if (isset($hist->end)))
 			<h1>Ubah Sejarah perpanjangan Domain: {{$hist->domainLabel}}</h1>
@@ -52,8 +60,10 @@
 		<label for="end">Tanggal berakhir</label>
 		<input type="date" class="form-control" id="end" name="end" placeholder="Masukan Tanggal berakhir domain" @if(isset($hist->end)))
 				value="{{ $hist->end->format('Y-m-d') }}"
-			@elseif(isset($errors))
+			@elseif(null!==old('end'))
 				 value="{{ old('end') }}"
+			@else
+				value="{{ Carbon\carbon::now()->addYear()->format('Y-m-d') }}"
 			@endif>
 				@if ($errors->has('end'))
             <span class="help-block">
