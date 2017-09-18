@@ -226,7 +226,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
 
-
+        'H' => App\Helpers\Helper::class,
     ],
 
 ];

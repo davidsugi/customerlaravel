@@ -51,6 +51,10 @@
 		Detail Registrar<small>Melihat data detail dari registrar {{$res->registrar}} </small>
 @endsection
 
+@section('bread')
+	<li><a href="{{ route ('home') }}"><i class="fa fa-dashboard"></i> </a></li><li><a href="{{ route ('registrars.index') }}"> registrar</a></li> <li class="active"> {{ $res->registrar }} </li>
+@endsection
+
 @section('title')
 	Registrar {{$res->registrar}}
 @endsection
@@ -90,7 +94,7 @@
                             	<h3 class="box-title"> Domain yang terdaftar di registrar {{ $res->registrar }}</h3>
                             </div>
                                 <div class="box-body table-responsive">
-@include('../Domain/dom')
+@include('Domain._dom')
 </div>
 </div>
 </div>

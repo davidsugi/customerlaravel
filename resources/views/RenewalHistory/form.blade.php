@@ -14,7 +14,7 @@
 
 
 @section('title')
-		@if (isset($hist->end)))
+		@if (isset($hist->end))
 			Update Sejarah perpanjangan Domain
 		@else
 			Tambah Sejarah perpanjangan Domain
@@ -22,19 +22,17 @@
 @endsection
 
 @section('Header')
-		@if (isset($hist->end)))
-			Update Sejarah perpanjangan Domain <small>Mengubah data sejarah perpanjangan domain</small>
+		@if (isset($hist->end))
+			Update Sejarah perpanjangan Domain <small>Mengubah data sejarah perpanjangan domain {{$hist->domain->name}}</small>
 		@else
-			Tambah Sejarah perpanjangan Domain <small>Menambah data sejarah perpanjangan domain</small>
+			Tambah Sejarah perpanjangan Domain<small>Menambah data sejarah perpanjangan domain</small>
 		@endif
 @endsection
 
 @section('content')
-		@if (isset($hist->end)))
-			<h1>Ubah Sejarah perpanjangan Domain: {{$hist->domainLabel}}</h1>
+		@if (isset($hist->end))
 			<form action="{{ url('/renewal_histories', $hist->id ) }}" method="POST"><input name="_method" type="hidden" value="PUT">
 		@else
-		<h1>Tambah Sejarah perpanjangan Domain baru</h1>
 			<form action="{{ url('/renewal_histories') }}" method="POST">
 		@endif
 		 {{ csrf_field() }}

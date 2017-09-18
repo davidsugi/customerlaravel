@@ -6,9 +6,7 @@
 
 @section('ext')
 	<style type="text/css">
-		table{
-			font-size: 25px;
-		}
+
 		.alert{
 			font-size:20px;
 		}

@@ -7,7 +7,7 @@
 @section('ext')
 	<style type="text/css">
 		table{
-			font-size: 25px;
+			font-size: 1.2em;
 		}
 		.alert{
 			font-size:20px;
@@ -18,6 +18,11 @@
 @section('Header')
 		View Domain<small>Melihat data domain </small>
 @endsection
+
+@section('bread')
+	<li><a href="{{ route ('home') }}"><i class="fa fa-dashboard"></i> </a></li><li class="active">List Domain</li>
+@endsection
+
 
 @section('content')
  <div class="row">
@@ -34,11 +39,11 @@
 				<tr>
 				<th>Nomor Domain</th>
 				<th>Domain</th>
-				<th>tanggal beli</th>
+				<th class="hidden-xs">tanggal beli</th>
 				<th>tanggal berakhir</th>
-				<th>Harga Beli</th>
+				<th class="hidden-xs">Harga Beli</th>
 				<th>Harga Perpanjangan</th>
-				<th>Customer</th>
+				<th >Customer</th>
 				<th>Registrar</th>
 				<th colspan="2">Action</th>
 				</tr>
@@ -51,9 +56,9 @@
 			@endforeach --}}
 			<td>{{ $row->id }}</td>
 			<td>{{ $row->name }}</td>
-			<td>{{ $row->startLabel }}</td>
+			<td class="hidden-xs">{{ $row->startLabel }}</td>
 			<td>{{ $row->endLabel }}</td>
-			<td>{{ $row->fee }}</td>
+			<td class="hidden-xs">{{ $row->fee }}</td>
 			<td>{{ $row->renewal_fee }}</td>
 			<td>{{ $row->customer->name }}</td>
 			<td>{{ $row->registrar->registrar }}</td>

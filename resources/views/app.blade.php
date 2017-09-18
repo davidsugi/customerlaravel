@@ -22,7 +22,7 @@
         <![endif]-->
     @yield('ext')
     </head>
-    <body class="skin-black">
+    <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
         @include('navhead')
         @include('sidebar')

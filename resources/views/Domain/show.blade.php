@@ -34,6 +34,10 @@
 	</style>
 @endsection
 
+@section('bread')
+	<li><a href="{{ route ('home') }}"><i class="fa fa-dashboard"></i> </a></li><li><a href="{{ route ('domains.index') }}">Customer</a></li>
+@endsection
+
 @section('title')
 	Domain {{$res->name}}
 @endsection

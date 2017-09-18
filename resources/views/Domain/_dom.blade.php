@@ -21,8 +21,8 @@
 			<td>{{ $row->name }}</td>
 			<td>{{ $row->startLabel }}</td>
 			<td>{{ $row->endLabel }}</td>
-			<td>{{ $row->fee }}</td>
-			<td>{{ $row->renewal_fee }}</td>
+			<td>{{ H::money($row->fee) }}</td>
+			<td>{{ H::money($row->renewal_fee) }}</td>
 			<td>{{ $row->customer->name }}</td>
 			<td>{{ $row->registrar->registrar }}</td>
 		</tr>

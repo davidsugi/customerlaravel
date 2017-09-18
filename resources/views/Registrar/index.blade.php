@@ -11,13 +11,20 @@
 
 @section('ext')
 	<style type="text/css">
-		table{
-			font-size: 25px;
-		}
+		
 		.alert{
 			font-size:20px;
 		}
 	</style>
+@endsection
+
+@section('bread')
+	<li><a href="{{ route ('home') }}"><i class="fa fa-dashboard"></i> </a></li><li><a href="{{ route ('registrars.index') }}">Registrar</a></li><li class="active">		
+		@if (isset($reg))
+			Update Registrar: {{ $reg->registrar }}
+		@else
+			Tambah Registrar
+		@endif</li>
 @endsection
 
 @section('content')

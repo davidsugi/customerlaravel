@@ -49,6 +49,10 @@
 	Detail riwayat perpanjangan domain {{ $res->domain->name}}
 @endsection
 
+@section('bread')
+	<li><a href="{{ route ('home') }}"><i class="fa fa-dashboard"></i> </a></li><li><a href="{{ route ('renewal_histories.index') }}">Riwayat perpanjangan</a></li> <li class="active"> {{ $res->domain->name }} </li>
+@endsection
+
 @section('content')
 <div class="row command">
 	<div class="col-sm-2"> </div>

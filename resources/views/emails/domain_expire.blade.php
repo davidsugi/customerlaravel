@@ -1,0 +1,1 @@
+<p>Domain {{ $domain->name }} akan expire pada tanggal {{ $domain->endLabel }}.</p>

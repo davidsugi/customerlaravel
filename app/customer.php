@@ -42,4 +42,15 @@ class customer extends Model
    		return $this->hasMany('App\Domain',"cust_id");
    	}
 
+      public function renewal_histories(){
+         return $this->hasManyThrough(
+            'App\RenewalHistory',
+            'App\Domain',
+            'cust_id', // Foreign key on users table...
+            'domain_id', // Foreign key on posts table...
+            'id', // Local key on countries table...
+            'id' // Local key on users table...
+        );
+      }
+
 }

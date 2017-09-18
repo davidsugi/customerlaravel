@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@new')->name('home');
 
 // Route::get('/customers','CustomerController@index');
 // Route::get('/customers/create','CustomerController@create');
@@ -27,8 +27,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::put('/customers/{id}','CustomerController@update');
 // Route::post('/customers/{id}','CustomerController@delete');
 
-Route::post('renewal_histories/create/{id}', 'RenewalHistoryController@create')->name('renewal_history.creates');
-Route::get('renewal_histories/create/{id}', 'RenewalHistoryController@create');
+Route::post('renewal_histories/create/{id}', 'RenewalHistoryController@create');
+Route::get('renewal_histories/create/{id}', 'RenewalHistoryController@create')->name('renewal_history.creates');
 Route::resource('customers', 'CustomerController');
 Route::resource('domains', 'DomainController');
 Route::resource('registrars', 'RegistrarController');
@@ -36,5 +36,7 @@ Route::resource('renewal_histories', 'RenewalHistoryController');
 
 Route::get('/haha', 'HomeController@new')->name('haha');
 
-
+Route::get('/mailable', function () {
+    return new App\Mail\DomainExpired();
+});
 

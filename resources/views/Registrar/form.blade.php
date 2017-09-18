@@ -12,6 +12,14 @@
 	</style>
 @endsection
 
+@section('bread')
+	<li><a href="{{ route ('home') }}"><i class="fa fa-dashboard"></i> </a></li><li><a href="{{ route ('registrars.index') }}">Registrar</a></li><li class="active">		
+		@if (isset($reg))
+			Update Registrar: {{ $reg->registrar }}
+		@else
+			Tambah Registrar
+		@endif</li>
+@endsection
 
 @section('title')
 		@if (isset($reg))
@@ -31,10 +39,8 @@
 
 @section('content')
 		@if (isset($reg))
-			<h1>Ubah registrar: {{$reg->registrar}}</h1>
 			<form action="{{ url('/registrars', $reg->id ) }}" method="POST"><input name="_method" type="hidden" value="PUT">
 		@else
-		<h1>Tambah registrar baru</h1>
 			<form action="{{ url('/registrars') }}" method="POST">
 		@endif
 		 {{ csrf_field() }}

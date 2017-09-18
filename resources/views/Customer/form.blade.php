@@ -39,10 +39,8 @@
 
 @section('content')
 		@if (isset($cust))
-			<h1>Ubah customer: {{$cust->name}}</h1>
 			<form action="{{ url('/customers', $cust->id ) }}" method="POST"><input name="_method" type="hidden" value="PUT">
 		@else
-		<h1>Tambah customer baru</h1>
 			<form action="{{ url('/customers') }}" method="POST">
 		@endif
 		 {{ csrf_field() }}

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\RenewalHistory;
+use App\Domain;
+use App\Registrar;
+use App\customer;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -28,7 +33,23 @@ class HomeController extends Controller
 
     public function new()
     {
-        $res= "App\RenewalHistory"::all();
-        return view('new')->with('res',$res);
+        // $cust=Customer::where('status',0)->count();
+        // $weekly=Domain::whereBetween('end', Carbon::now(), Carbon::now()->addWeek())->count();
+        // $monthly=Domain::whereBetween('end', Carbon::now(), Carbon::now()->addMonth())->count();
+        // $yearly=Domain::whereBetween('end', Carbon::now(), Carbon::now()->addYear())->count();
+        // $dead = Domain::where('end','<', Carbon::now)->count();
+        // $reg= Registrar::count();
+        $counts=[
+            'cust'=>customer::where('status',0)->count(),
+            'weekly'=>Domain::whereBetween('end', [Carbon::now(), Carbon::now()->addWeek()])->count(),
+            'monthly'=>Domain::whereBetween('end', [Carbon::now()->addWeek(), Carbon::now()->addMonth()])->count(),
+            'yearly'=>Domain::whereBetween('end', [Carbon::now()->addMonth(), Carbon::now()->addYear()])->count(),
+            'more'=>Domain::where('end','>=', Carbon::now()->addYear())->count(),
+            'dead'=>Domain::where('end','<', Carbon::now())->count(),
+            'reg'=>Registrar::count(),
+            'dom'=>Domain::where('end','>',Carbon::now())->count() 
+        ];
+        $res= RenewalHistory::orderBy('end', 'desc')->get();
+        return view('new')->with(['res'=>$res, 'counts'=>$counts]);
     }
 }

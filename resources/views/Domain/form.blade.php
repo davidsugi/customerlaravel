@@ -13,6 +13,14 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 @endsection
 
+@section('bread')
+	<li><a href="{{ route ('home') }}"><i class="fa fa-dashboard"></i> </a></li><li><a href="{{ route ('domains.index') }}">Domain</a></li><li class="active">		
+		@if (isset($dom))
+			Update Domain:{{ $dom->name }}
+		@else
+			Tambah Domain
+		@endif</li>
+@endsection
 
 @section('title')
 		@if (isset($dom))
@@ -26,16 +34,14 @@
 		@if (isset($dom))
 			Update Domain <small>Ubah data domain {{$dom->name}}</small>
 		@else
-			Tambah Domain<small>Tambah data domain baru</small>
+			Tambah Domain <small>Tambah data domain baru</small>
 		@endif
 @endsection
 
 @section('content')
 		@if (isset($dom))
-			<h1>Ubah Domain: {{$dom->name}}</h1>
 			<form action="{{ url('/domains', $dom->id ) }}" method="POST"><input name="_method" type="hidden" value="PUT">
 		@else
-		<h1>Tambah Domain baru</h1>
 			<form action="{{ url('/domains') }}" method="POST">
 		@endif
 		 {{ csrf_field() }}

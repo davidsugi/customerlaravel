@@ -6,21 +6,15 @@
 
 @section('ext')
 	<style type="text/css">
-		table{
-			font-size: 25px;
-		}
+
 		.alert{
 			font-size:20px;
 		}
 	</style>
-        <!-- DATA TABLES -->
-        <link href="../../css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
-        <!-- Theme style -->
-        <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('bread')
-	<li><a href="{{ route ('customers.index') }}"><i class="fa fa-dashboard"></i> </a></li><li class="active">Customer</li>
+	<li><a href="{{ route ('home') }}"><i class="fa fa-dashboard"></i> </a></li><li class="active">Customer</li>
 @endsection
 
 @section('Header')
@@ -44,9 +38,9 @@
 				<th>Nama</th>
 				<th>Email</th>
 				<th>No HP</th>
-				<th>Alamat</th>
-				<th>Tanggal Lahir</th>
-				<th>status</th>
+				<th class="hidden-xs">Alamat</th>
+				<th class="hidden-xs">Tanggal Lahir</th>
+				<th class="hidden-xs">status</th>
 				<th>Action</th>
 				</tr>
 			</thead>
@@ -60,9 +54,9 @@
 			<td>{{ $row->name }}</td>
 			<td>{{ $row->email }}</td>
 			<td>{{ $row->phone }}</td>
-			<td>{{ $row->Addres }}</td>
-			<td>{{ $row->dateOfBirth }}</td>
-			<td>{{ $row->statusLabel }}</td>
+			<td class="hidden-xs">{{ $row->Addres }}</td>
+			<td class="hidden-xs">{{ $row->dateOfBirth }}</td>
+			<td class="hidden-xs">{{ $row->statusLabel }}</td>
 			<td><a class="btn btn-primary" href="{{ action('CustomerController@show', [$row->id]) }}" role="button">detail</a></td>
 		</tr>
 		@endforeach
